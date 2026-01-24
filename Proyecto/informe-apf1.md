@@ -178,12 +178,21 @@ Proyecto/
 
 ### Anexo A: Capturas de pantalla
 
-*[Insertar capturas de pantalla del proyecto funcionando]*
+**Captura 1: Vista completa del sitio en escritorio**
 
-- Captura 1: Vista completa del sitio en escritorio
-- Captura 2: Sección del formulario de contacto
-- Captura 3: Sección multimedia
-- Captura 4: Vista en dispositivo móvil
+![Vista Desktop](capturas/127.0.0.1_5500_tarea-tablas_tablas-desktop.png)
+
+**Captura 2: Sección del formulario de contacto**
+
+![Formulario de Contacto](capturas/127.0.0.1_5500_tarea-tablas_tablas-formulario.png)
+
+**Captura 3: Sección multimedia**
+
+![Sección Multimedia](capturas/127.0.0.1_5500_tarea-tablas_tablas-multimedia.png)
+
+**Captura 4: Vista en dispositivo móvil**
+
+![Vista Mobile](capturas/127.0.0.1_5500_tarea-tablas_tablas-mobile.png)
 
 ### Anexo B: Código fuente relevante
 
