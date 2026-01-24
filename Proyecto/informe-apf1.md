@@ -8,9 +8,9 @@
 
 **Carrera:** Ingeniería de Sistemas
 
-**Curso:** [Nombre del curso]
+**Curso:** Taller de Programación Web
 
-**Docente:** [Nombre del docente]
+**Docente:** Richard Doann Asencios Vilchez
 
 **Título del Proyecto:**
 **Formulario de Contacto con Experiencia Multimedia**
