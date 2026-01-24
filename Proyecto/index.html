@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Formulario de Contacto con Experiencia Multimedia</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <style>
+            /* Estilos Generales */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                background-color: #f4f4f9;
+                margin: 20px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                color: #333;
+            }
+
+            /* Encabezado */
+            header {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                text-align: center;
+                padding: 40px 20px;
+                border-radius: 10px;
+                margin-bottom: 30px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            header h1 {
+                font-size: 2.5em;
+                margin-bottom: 10px;
+                font-weight: 700;
+            }
+
+            header h2 {
+                font-size: 1.3em;
+                font-weight: 300;
+                font-style: italic;
+                opacity: 0.95;
+            }
+
+            /* Navegación */
+            nav {
+                background-color: #2c3e50;
+                padding: 15px;
+                border-radius: 8px;
+                margin-bottom: 30px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            nav ul {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                gap: 30px;
+            }
+
+            nav ul li a {
+                color: white;
+                text-decoration: none;
+                font-weight: 500;
+                padding: 8px 15px;
+                border-radius: 5px;
+                transition: all 0.3s ease;
+            }
+
+            nav ul li a:hover {
+                background-color: #667eea;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+            }
+
+            /* Secciones */
+            section {
+                background-color: white;
+                margin-bottom: 30px;
+                padding: 30px;
+                border-radius: 10px;
+                border: 2px solid #e0e0e0;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            }
+
+            section h2 {
+                color: #667eea;
+                margin-bottom: 20px;
+                font-size: 2em;
+                border-bottom: 3px solid #667eea;
+                padding-bottom: 10px;
+            }
+
+            /* Sección Sobre Mí */
+            #sobre-mi {
+                background-color: #fff8f0;
+                border-color: #ffb347;
+            }
+
+            #sobre-mi h2 {
+                color: #ff8c42;
+                border-color: #ff8c42;
+            }
+
+            #sobre-mi img {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                object-fit: cover;
+                float: left;
+                margin: 0 20px 20px 0;
+                border: 5px solid #ff8c42;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            #sobre-mi p {
+                text-align: justify;
+                font-size: 1.1em;
+                line-height: 1.8;
+            }
+
+            /* Sección Habilidades */
+            #habilidades {
+                background-color: #f0f8ff;
+                border-color: #4a90e2;
+            }
+
+            #habilidades h2 {
+                color: #4a90e2;
+                border-color: #4a90e2;
+            }
+
+            #habilidades ul {
+                list-style: none;
+                padding-left: 0;
+            }
+
+            #habilidades ul li {
+                padding: 12px;
+                margin-bottom: 10px;
+                background-color: white;
+                border-left: 5px solid #4a90e2;
+                border-radius: 5px;
+                font-size: 1.1em;
+                transition: all 0.3s ease;
+            }
+
+            #habilidades ul li:hover {
+                transform: translateX(10px);
+                box-shadow: 0 4px 8px rgba(74, 144, 226, 0.2);
+            }
+
+            #habilidades ul li::before {
+                content: "⭐ ";
+                margin-right: 10px;
+                font-size: 1.2em;
+            }
+
+            /* Sección Portafolio */
+            #portafolio {
+                background-color: #f5fff5;
+                border-color: #52c41a;
+            }
+
+            #portafolio h2 {
+                color: #52c41a;
+                border-color: #52c41a;
+            }
+
+            article {
+                background-color: white;
+                padding: 20px;
+                margin-bottom: 20px;
+                border-radius: 8px;
+                border: 2px solid #e8e8e8;
+                transition: all 0.3s ease;
+            }
+
+            article:hover {
+                border-color: #52c41a;
+                box-shadow: 0 6px 12px rgba(82, 196, 26, 0.15);
+                transform: translateY(-3px);
+            }
+
+            article h3 {
+                color: #333;
+                margin-bottom: 10px;
+                font-size: 1.5em;
+            }
+
+            article p {
+                color: #666;
+                margin-bottom: 15px;
+                line-height: 1.6;
+            }
+
+            article a {
+                display: inline-block;
+                background-color: #52c41a;
+                color: white;
+                padding: 10px 20px;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: all 0.3s ease;
+                font-weight: 500;
+            }
+
+            article a:hover {
+                background-color: #389e0d;
+                transform: scale(1.05);
+                box-shadow: 0 4px 8px rgba(56, 158, 13, 0.3);
+            }
+
+            /* Footer */
+            footer {
+                background-color: #2c3e50;
+                color: white;
+                text-align: center;
+                padding: 30px;
+                border-radius: 10px;
+                margin-top: 30px;
+            }
+
+            footer p {
+                margin-bottom: 10px;
+                font-size: 1em;
+            }
+
+            footer a {
+                color: #667eea;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            footer a:hover {
+                color: #8b9eff;
+                text-decoration: underline;
+            }
+
+            /* ===== SECCION CONTACTO Y FORMULARIO ===== */
+            #contacto-form {
+                background-color: #f8f0ff;
+                border-color: #764ba2;
+            }
+
+            #contacto-form h2 {
+                color: #764ba2;
+                border-color: #764ba2;
+            }
+
+            #contacto-form > p {
+                margin-bottom: 25px;
+                font-size: 1.1em;
+                color: #555;
+            }
+
+            form {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 600;
+                color: #333;
+                font-size: 1em;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                width: 100%;
+                padding: 12px 15px;
+                border: 2px solid #ddd;
+                border-radius: 8px;
+                font-size: 1em;
+                font-family: inherit;
+                transition: all 0.3s ease;
+                background-color: white;
+            }
+
+            .form-group input:focus,
+            .form-group select:focus,
+            .form-group textarea:focus {
+                outline: none;
+                border-color: #764ba2;
+                box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.2);
+            }
+
+            .form-group textarea {
+                resize: vertical;
+                min-height: 120px;
+            }
+
+            .form-group select {
+                cursor: pointer;
+            }
+
+            form button[type="submit"] {
+                width: 100%;
+                padding: 15px 30px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 1.1em;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            form button[type="submit"]:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            }
+
+            form button[type="reset"] {
+                width: 100%;
+                padding: 15px 30px;
+                background-color: #6c757d;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 1.1em;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                margin-top: 10px;
+            }
+
+            form button[type="reset"]:hover {
+                background-color: #5a6268;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+            }
+
+            /* ===== SECCION MULTIMEDIA ===== */
+            #multimedia {
+                background-color: #f0fff0;
+                border-color: #52c41a;
+            }
+
+            #multimedia h2 {
+                color: #52c41a;
+                border-color: #52c41a;
+            }
+
+            .multimedia-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            /* Contenedor de Audio */
+            .audio-contenedor {
+                padding: 25px;
+                background-color: #fff;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                border-left: 4px solid #667eea;
+            }
+
+            .audio-contenedor h3 {
+                color: #667eea;
+                margin-bottom: 15px;
+                font-size: 1.3em;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .audio-contenedor audio {
+                width: 100%;
+                max-width: 500px;
+                border-radius: 30px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            }
+
+            .audio-descripcion {
+                margin-top: 12px;
+                font-style: italic;
+                color: #666;
+                font-size: 0.95em;
+            }
+
+            /* Contenedor de Imagen */
+            .imagen-contenedor {
+                padding: 25px;
+                background-color: #fff;
+                border-radius: 12px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                border-left: 4px solid #ff8c42;
+                text-align: center;
+            }
+
+            .imagen-contenedor h3 {
+                color: #ff8c42;
+                margin-bottom: 15px;
+                font-size: 1.3em;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .imagen-contenedor img {
+                max-width: 100%;
+                height: auto;
+                border-radius: 15px;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+                transition: transform 0.3s ease;
+            }
+
+            .imagen-contenedor img:hover {
+                transform: scale(1.02);
+            }
+
+            .imagen-descripcion {
+                margin-top: 12px;
+                font-style: italic;
+                color: #666;
+                font-size: 0.95em;
+            }
+
+            /* ===== TABLA DE PROYECTOS ===== */
+            #portafolio h3 {
+                color: #333;
+                margin: 30px 0 20px;
+                font-size: 1.4em;
+                text-align: center;
+            }
+
+            .tabla-contenedor {
+                overflow-x: auto;
+                margin-top: 20px;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                background-color: white;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            table thead {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+            }
+
+            table th {
+                padding: 15px 12px;
+                text-align: left;
+                font-weight: 600;
+                font-size: 1em;
+            }
+
+            table td {
+                padding: 12px;
+                border-bottom: 1px solid #eee;
+                font-size: 0.95em;
+            }
+
+            table tbody tr:hover {
+                background-color: #f5f5f5;
+            }
+
+            table tbody tr:last-child td {
+                border-bottom: none;
+            }
+
+            .estado-completado {
+                color: #52c41a;
+                font-weight: 600;
+            }
+
+            .estado-progreso {
+                color: #faad14;
+                font-weight: 600;
+            }
+
+            .estado-planificado {
+                color: #1890ff;
+                font-weight: 600;
+            }
+
+            .fila-resumen {
+                background-color: #f0f8ff;
+            }
+
+            .fila-resumen td {
+                padding: 15px 12px;
+                border-top: 2px solid #667eea;
+            }
+
+            table a {
+                color: #667eea;
+                text-decoration: none;
+                font-weight: 500;
+                transition: color 0.3s ease;
+            }
+
+            table a:hover {
+                color: #764ba2;
+                text-decoration: underline;
+            }
+
+            /* ===== VIDEO DE PRESENTACION ===== */
+            .video-contenedor {
+                clear: both;
+                margin-top: 30px;
+                padding-top: 20px;
+                border-top: 2px dashed #ffb347;
+            }
+
+            .video-contenedor h3 {
+                color: #ff8c42;
+                margin-bottom: 15px;
+                font-size: 1.3em;
+            }
+
+            .video-contenedor video {
+                width: 100%;
+                max-width: 640px;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                background-color: #000;
+            }
+
+            .video-descripcion {
+                margin-top: 10px;
+                font-style: italic;
+                color: #666;
+                font-size: 0.95em;
+            }
+
+            /* Diseño Responsivo */
+            @media screen and (max-width: 600px) {
+                body {
+                    margin: 10px;
+                }
+
+                header h1 {
+                    font-size: 1.8em;
+                }
+
+                header h2 {
+                    font-size: 1em;
+                }
+
+                nav ul {
+                    flex-direction: column;
+                    gap: 10px;
+                }
+
+                nav ul li {
+                    text-align: center;
+                }
+
+                section {
+                    padding: 20px;
+                }
+
+                section h2 {
+                    font-size: 1.5em;
+                }
+
+                #sobre-mi img {
+                    float: none;
+                    display: block;
+                    margin: 0 auto 20px;
+                }
+
+                article {
+                    padding: 15px;
+                }
+
+                /* Formulario responsivo */
+                form {
+                    padding: 0 10px;
+                }
+
+                .form-group input,
+                .form-group select,
+                .form-group textarea {
+                    padding: 10px 12px;
+                }
+
+                form button[type="submit"] {
+                    padding: 12px 20px;
+                }
+
+                /* Tabla responsiva */
+                table th,
+                table td {
+                    padding: 10px 8px;
+                    font-size: 0.85em;
+                }
+
+                .tabla-contenedor {
+                    margin: 0 -10px;
+                }
+
+                /* Video responsivo */
+                .video-contenedor video {
+                    max-width: 100%;
+                }
+
+                /* Multimedia responsivo */
+                .audio-contenedor,
+                .video-contenedor,
+                .imagen-contenedor {
+                    padding: 15px;
+                }
+
+                .audio-contenedor audio {
+                    max-width: 100%;
+                }
+
+                form button[type="reset"] {
+                    padding: 12px 20px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Encabezado Principal -->
+        <header>
+            <h1>Jean Piere Sanchez</h1>
+            <h2>"La persistencia es el camino del éxito"</h2>
+        </header>
+
+        <!-- Navegacion -->
+        <nav>
+            <ul>
+                <li><a href="#contacto-form"><i class="fas fa-envelope"></i> Contacto</a></li>
+                <li><a href="#multimedia"><i class="fas fa-photo-video"></i> Multimedia</a></li>
+            </ul>
+        </nav>
+
+        <!-- Contenido Principal -->
+        <main>
+            <!-- SECCION 1: Sobre Mí -->
+            <section id="sobre-mi">
+                <h2><i class="fas fa-user"></i> Sobre Mí</h2>
+                <img src="data:image/png;base64,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" alt="Foto personal">
+                <p>
+                    Soy un profesional apasionado por la tecnología y el desarrollo web.
+                    Me especializo en crear experiencias digitales innovadoras y funcionales.
+                    Con experiencia en HTML5, CSS3 y JavaScript, me esfuerzo constantemente
+                    por aprender nuevas tecnologías y mejorar mis habilidades. Mi objetivo es
+                    construir soluciones web que no solo sean visualmente atractivas, sino
+                    también eficientes y accesibles para todos los usuarios. Creo firmemente
+                    en el poder de la colaboración y el aprendizaje continuo para alcanzar
+                    la excelencia en cada proyecto.
+                </p>
+
+                <!-- Video de presentación -->
+                <div class="video-contenedor">
+                    <h3>Video de Presentación</h3>
+                    <video controls width="100%">
+                        <source src="media/YTDown.com_YouTube_AboutMe-Video-Vova-Melnykov-Schauspieler_Media_6YZbpWTd0wc_003_360p.mp4" type="video/mp4">
+                        <p>Tu navegador no soporta el elemento de video.
+                           <a href="media/YTDown.com_YouTube_AboutMe-Video-Vova-Melnykov-Schauspieler_Media_6YZbpWTd0wc_003_360p.mp4">Descarga el video aquí</a>.
+                        </p>
+                    </video>
+                    <p class="video-descripcion">Conoce más sobre mi trayectoria y proyectos.</p>
+                </div>
+            </section>
+
+            <!-- Sección Habilidades -->
+            <section id="habilidades">
+                <h2>Habilidades</h2>
+                <ul>
+                    <li>HTML5 y Estructuras Semánticas</li>
+                    <li>CSS3 y Diseño Responsivo</li>
+                    <li>JavaScript y Programación Web</li>
+                    <li>Diseño UI/UX</li>
+                    <li>Control de Versiones con Git</li>
+                    <li>Resolución de Problemas</li>
+                </ul>
+            </section>
+
+            <!-- Sección Portafolio -->
+            <section id="portafolio">
+                <h2>Portafolio</h2>
+
+                <article>
+                    <h3>Proyecto 1: Sitio Web Corporativo</h3>
+                    <p>
+                        Desarrollo de un sitio web corporativo moderno y responsivo para una
+                        empresa de tecnología. Implementación de diseño adaptable, optimización
+                        de rendimiento y experiencia de usuario intuitiva.
+                    </p>
+                    <a href="#" target="_blank">Ver Proyecto</a>
+                </article>
+
+                <article>
+                    <h3>Proyecto 2: Aplicación Web Interactiva</h3>
+                    <p>
+                        Creación de una aplicación web interactiva con funcionalidades dinámicas.
+                        Incluye formularios validados, animaciones CSS y una interfaz moderna
+                        siguiendo las mejores prácticas de desarrollo web.
+                    </p>
+                    <a href="#" target="_blank">Ver Proyecto</a>
+                </article>
+
+                <!-- Tabla de Proyectos Realizados -->
+                <h3>Resumen de Proyectos</h3>
+                <div class="tabla-contenedor">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Proyecto</th>
+                                <th>Tecnologías</th>
+                                <th>Estado</th>
+                                <th>Enlace</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sitio Web Corporativo</td>
+                                <td>HTML5, CSS3, JavaScript</td>
+                                <td class="estado-completado">Completado</td>
+                                <td><a href="#" target="_blank">Ver</a></td>
+                            </tr>
+                            <tr>
+                                <td>App Web Interactiva</td>
+                                <td>HTML5, CSS3, JS, APIs</td>
+                                <td class="estado-completado">Completado</td>
+                                <td><a href="#" target="_blank">Ver</a></td>
+                            </tr>
+                            <tr>
+                                <td>E-commerce</td>
+                                <td>React, Node.js, MongoDB</td>
+                                <td class="estado-progreso">En progreso</td>
+                                <td><a href="#" target="_blank">Demo</a></td>
+                            </tr>
+                            <tr>
+                                <td>API REST</td>
+                                <td>Node.js, Express, PostgreSQL</td>
+                                <td class="estado-planificado">Planificado</td>
+                                <td>-</td>
+                            </tr>
+                            <!-- Fila con COLSPAN para el total -->
+                            <tr class="fila-resumen">
+                                <td colspan="2"><strong>Total de proyectos</strong></td>
+                                <td colspan="2"><strong>4 proyectos</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <!-- Sección Contacto con Formulario -->
+        <section id="contacto-form">
+            <h2>Contacto</h2>
+            <p>¿Tienes un proyecto en mente? ¡Me encantaría escucharte!</p>
+
+            <form action="#" method="POST">
+                <!-- Campo Nombre -->
+                <div class="form-group">
+                    <label for="nombre">Nombre completo *</label>
+                    <input
+                        type="text"
+                        id="nombre"
+                        name="nombre"
+                        placeholder="Ingresa tu nombre"
+                        required
+                        minlength="2"
+                        maxlength="100"
+                        autocomplete="name"
+                    >
+                </div>
+
+                <!-- Campo Email -->
+                <div class="form-group">
+                    <label for="email">Correo electrónico *</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="ejemplo@correo.com"
+                        required
+                        autocomplete="email"
+                    >
+                </div>
+
+                <!-- Select - Tipo de consulta -->
+                <div class="form-group">
+                    <label for="tipo-consulta">Tipo de consulta *</label>
+                    <select id="tipo-consulta" name="tipo-consulta" required>
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="proyecto">Nuevo proyecto</option>
+                        <option value="colaboracion">Colaboración</option>
+                        <option value="trabajo">Oportunidad laboral</option>
+                        <option value="consulta">Consulta general</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+
+                <!-- Campo Mensaje -->
+                <div class="form-group">
+                    <label for="mensaje">Mensaje *</label>
+                    <textarea
+                        id="mensaje"
+                        name="mensaje"
+                        rows="5"
+                        placeholder="Escribe tu mensaje aquí..."
+                        required
+                        minlength="10"
+                        maxlength="1000"
+                    ></textarea>
+                </div>
+
+                <!-- Botón de envío -->
+                <button type="submit">Enviar mensaje</button>
+            </form>
+        </section>
+
+        <!-- SECCION: Multimedia -->
+        <section id="multimedia">
+            <h2><i class="fas fa-photo-video"></i> Multimedia</h2>
+            <div class="multimedia-grid">
+                <!-- Contenedor de Imagen -->
+                <div class="imagen-contenedor">
+                    <h3><i class="fas fa-image"></i> Galería de Imágenes</h3>
+                    <img src="media/trabajo-para-ingeniero-de-sistemas-.webp" alt="Ingeniero de Sistemas trabajando">
+                    <p class="imagen-descripcion">El trabajo de un ingeniero de sistemas en acción.</p>
+                </div>
+
+                <!-- Contenedor de Audio -->
+                <div class="audio-contenedor">
+                    <h3><i class="fas fa-music"></i> Música de Fondo</h3>
+                    <audio controls>
+                        <source src="media/01HSH4PPWXY8TW36DWFQR4SGD9.mp3" type="audio/mpeg">
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+                    <p class="audio-descripcion">Música de fondo para concentrarse mientras programas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p><strong>Contacto:</strong></p>
+            <p>Email: <a href="mailto:jeanpiere@utp.edu.pe">jeanpiere@utp.edu.pe</a></p>
+            <p>Teléfono: +51 999 999 999</p>
+            <p>LinkedIn: <a href="#" target="_blank">linkedin.com/in/jean-piere</a></p>
+            <p>&copy; 2026 Jean Piere Sanchez. Todos los derechos reservados.</p>
+        </footer>
+    </body>
+</html>
