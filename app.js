@@ -488,8 +488,11 @@ function renderizarTablaTickets() {
         }
     }
 
-    // Ordenar por fecha
+    // Ordenar por fecha y prioridad
     ticketsFiltrados.sort(function(a, b) {
+        if (a.fecha === b.fecha) {
+            return PRIORIDADES.indexOf(b.prioridad) - PRIORIDADES.indexOf(a.prioridad);
+        }
         return new Date(b.fecha) - new Date(a.fecha);
     });
 
@@ -629,57 +632,206 @@ function cerrarModal() {
     console.log("Modal cerrado");
 }
 
-// Ver detalle de ticket en modal (reemplaza alert)
+// Ver detalle de ticket en modal
 function verTicket(id) {
     // Usar función con ciclo for y break
     const ticket = buscarTicketPorId(id);
+    if (!ticket) return;
 
-    if (ticket) {
-        ticketSeleccionado = ticket;
+    ticketSeleccionado = ticket;
 
-        // Construir contenido del modal con DOM manipulation
-        const contenido =
-            '<div class="modal-detail">' +
-            '<div class="detail-row">' +
-            '<span class="detail-label"><i class="fas fa-hashtag"></i> ID</span>' +
-            '<span class="detail-value">' + ticket.id + '</span>' +
-            '</div>' +
-            '<div class="detail-row">' +
-            '<span class="detail-label"><i class="fas fa-user"></i> Solicitante</span>' +
-            '<span class="detail-value">' + ticket.solicitante + '</span>' +
-            '</div>' +
-            '<div class="detail-row">' +
-            '<span class="detail-label"><i class="fas fa-envelope"></i> Email</span>' +
-            '<span class="detail-value">' + ticket.email + '</span>' +
-            '</div>' +
-            '<div class="detail-row">' +
-            '<span class="detail-label"><i class="fas fa-tag"></i> Categoría</span>' +
-            '<span class="detail-value">' + obtenerTextoCategoria(ticket.categoria) + '</span>' +
-            '</div>' +
-            '<div class="detail-row">' +
-            '<span class="detail-label"><i class="fas fa-flag"></i> Prioridad</span>' +
-            '<span class="detail-value priority priority-' + ticket.prioridad + '">' +
-            '<i class="' + obtenerIconoPrioridad(ticket.prioridad) + '"></i> ' +
-            obtenerTextoPrioridad(ticket.prioridad) + '</span>' +
-            '</div>' +
-            '<div class="detail-row">' +
-            '<span class="detail-label"><i class="fas fa-info-circle"></i> Estado</span>' +
-            '<span class="badge badge-' + ticket.estado + '">' +
-            '<i class="' + obtenerIconoEstado(ticket.estado) + '"></i> ' +
-            obtenerTextoEstado(ticket.estado) + '</span>' +
-            '</div>' +
-            '<div class="detail-row">' +
-            '<span class="detail-label"><i class="fas fa-calendar"></i> Fecha</span>' +
-            '<span class="detail-value">' + ticket.fecha + '</span>' +
-            '</div>' +
-            '<div class="detail-description">' +
-            '<span class="detail-label"><i class="fas fa-align-left"></i> Descripción</span>' +
-            '<p>' + ticket.descripcion + '</p>' +
-            '</div>' +
-            '</div>';
+    // Construir contenido del modal con DOM manipulation
+    const contenido =
+        '<div class="modal-detail">' +
+        '<div class="detail-row">' +
+        '<span class="detail-label"><i class="fas fa-hashtag"></i> ID</span>' +
+        '<span class="detail-value">' + ticket.id + '</span>' +
+        '</div>' +
+        '<div class="detail-row">' +
+        '<span class="detail-label"><i class="fas fa-user"></i> Solicitante</span>' +
+        '<span class="detail-value">' + ticket.solicitante + '</span>' +
+        '</div>' +
+        '<div class="detail-row">' +
+        '<span class="detail-label"><i class="fas fa-envelope"></i> Email</span>' +
+        '<span class="detail-value">' + ticket.email + '</span>' +
+        '</div>' +
+        '<div class="detail-row">' +
+        '<span class="detail-label"><i class="fas fa-tag"></i> Categoría</span>' +
+        '<span class="detail-value">' + obtenerTextoCategoria(ticket.categoria) + '</span>' +
+        '</div>' +
+        '<div class="detail-row">' +
+        '<span class="detail-label"><i class="fas fa-flag"></i> Prioridad</span>' +
+        '<span class="detail-value priority priority-' + ticket.prioridad + '">' +
+        '<i class="' + obtenerIconoPrioridad(ticket.prioridad) + '"></i> ' +
+        obtenerTextoPrioridad(ticket.prioridad) + '</span>' +
+        '</div>' +
+        '<div class="detail-row">' +
+        '<span class="detail-label"><i class="fas fa-info-circle"></i> Estado</span>' +
+        '<span class="badge badge-' + ticket.estado + '">' +
+        '<i class="' + obtenerIconoEstado(ticket.estado) + '"></i> ' +
+        obtenerTextoEstado(ticket.estado) + '</span>' +
+        '</div>' +
+        '<div class="detail-row">' +
+        '<span class="detail-label"><i class="fas fa-calendar"></i> Fecha</span>' +
+        '<span class="detail-value">' + ticket.fecha + '</span>' +
+        '</div>' +
+        '<div class="detail-description">' +
+        '<span class="detail-label"><i class="fas fa-align-left"></i> Descripción</span>' +
+        '<p>' + ticket.descripcion + '</p>' +
+        '</div>' +
+        '</div>';
 
-        abrirModal(contenido, ticket.titulo);
+    abrirModal(contenido, ticket.titulo);
+
+    // Agregar botón Editar al footer del modal
+    const footer = document.querySelector('#modalTicket .modal-footer');
+    if (footer) {
+        footer.innerHTML =
+            '<button class="btn btn-secondary" onclick="cerrarModal()">' +
+            '<i class="fas fa-times"></i> Cerrar' +
+            '</button>' +
+            '<button class="btn btn-submit" onclick="editarTicket(\'' + id + '\')">' +
+            '<i class="fas fa-pen"></i> Editar' +
+            '</button>';
     }
+}
+
+// Mostrar formulario de edición dentro del modal
+function editarTicket(id) {
+    const ticket = buscarTicketPorId(id);
+    if (!ticket) return;
+
+    const modalTitulo = document.getElementById('modal-titulo');
+    const modalBody   = document.getElementById('modal-body');
+    const footer      = document.querySelector('#modalTicket .modal-footer');
+
+    modalTitulo.innerText = 'Editar — ' + ticket.id;
+
+    // Construir formulario de edición con los valores actuales
+    modalBody.innerHTML =
+        '<div class="modal-form">' +
+
+        '<div class="form-group">' +
+        '<label>Título</label>' +
+        '<input type="text" id="edit-titulo" value="' + ticket.titulo + '" maxlength="150">' +
+        '</div>' +
+
+        '<div class="modal-form-row">' +
+
+        '<div class="form-group">' +
+        '<label>Solicitante</label>' +
+        '<input type="text" id="edit-solicitante" value="' + ticket.solicitante + '">' +
+        '</div>' +
+
+        '<div class="form-group">' +
+        '<label>Email</label>' +
+        '<input type="email" id="edit-email" value="' + ticket.email + '">' +
+        '</div>' +
+
+        '</div>' +
+
+        '<div class="modal-form-row">' +
+
+        '<div class="form-group">' +
+        '<label>Categoría</label>' +
+        '<select id="edit-categoria">' +
+        '<option value="software"'  + (ticket.categoria === 'software'  ? ' selected' : '') + '>Software</option>' +
+        '<option value="hardware"'  + (ticket.categoria === 'hardware'  ? ' selected' : '') + '>Hardware</option>' +
+        '<option value="red"'       + (ticket.categoria === 'red'       ? ' selected' : '') + '>Red / Conectividad</option>' +
+        '<option value="accesos"'   + (ticket.categoria === 'accesos'   ? ' selected' : '') + '>Accesos / Permisos</option>' +
+        '<option value="otro"'      + (ticket.categoria === 'otro'      ? ' selected' : '') + '>Otro</option>' +
+        '</select>' +
+        '</div>' +
+
+        '<div class="form-group">' +
+        '<label>Prioridad</label>' +
+        '<select id="edit-prioridad">' +
+        '<option value="baja"'   + (ticket.prioridad === 'baja'   ? ' selected' : '') + '>Baja</option>' +
+        '<option value="media"'  + (ticket.prioridad === 'media'  ? ' selected' : '') + '>Media</option>' +
+        '<option value="alta"'   + (ticket.prioridad === 'alta'   ? ' selected' : '') + '>Alta</option>' +
+        '<option value="critica"'+ (ticket.prioridad === 'critica'? ' selected' : '') + '>Crítica</option>' +
+        '</select>' +
+        '</div>' +
+
+        '<div class="form-group">' +
+        '<label>Estado</label>' +
+        '<select id="edit-estado">' +
+        '<option value="abierto"' + (ticket.estado === 'abierto'  ? ' selected' : '') + '>Abierto</option>' +
+        '<option value="proceso"' + (ticket.estado === 'proceso'  ? ' selected' : '') + '>En Proceso</option>' +
+        '<option value="resuelto"'+ (ticket.estado === 'resuelto' ? ' selected' : '') + '>Resuelto</option>' +
+        '<option value="cerrado"' + (ticket.estado === 'cerrado'  ? ' selected' : '') + '>Cerrado</option>' +
+        '</select>' +
+        '</div>' +
+
+        '</div>' +
+
+        '<div class="form-group">' +
+        '<label>Descripción</label>' +
+        '<textarea id="edit-descripcion" rows="4">' + ticket.descripcion + '</textarea>' +
+        '</div>' +
+
+        '</div>';
+
+    // Actualizar footer con Guardar / Cancelar
+    if (footer) {
+        footer.innerHTML =
+            '<button class="btn btn-secondary" onclick="verTicket(\'' + id + '\')">' +
+            '<i class="fas fa-arrow-left"></i> Cancelar' +
+            '</button>' +
+            '<button class="btn btn-submit" onclick="guardarEdicionTicket(\'' + id + '\')">' +
+            '<i class="fas fa-save"></i> Guardar cambios' +
+            '</button>';
+    }
+}
+
+// Guardar los cambios del ticket editado en localStorage
+function guardarEdicionTicket(id) {
+    const titulo      = document.getElementById('edit-titulo').value.trim();
+    const solicitante = document.getElementById('edit-solicitante').value.trim();
+    const email       = document.getElementById('edit-email').value.trim();
+    const categoria   = document.getElementById('edit-categoria').value;
+    const prioridad   = document.getElementById('edit-prioridad').value;
+    const estado      = document.getElementById('edit-estado').value;
+    const descripcion = document.getElementById('edit-descripcion').value.trim();
+
+    // Validaciones con if / else if y operadores de comparación
+    if (titulo.length < 5) {
+        alert('El título debe tener al menos 5 caracteres.');
+        return;
+    }
+    if (email.indexOf('@') === -1) {
+        alert('Ingrese un correo electrónico válido.');
+        return;
+    }
+    if (descripcion.length < 20) {
+        alert('La descripción debe tener al menos 20 caracteres.');
+        return;
+    }
+
+    // Actualizar el ticket en el arreglo usando ciclo for con break
+    let tickets = obtenerTickets();
+    for (let i = 0; i < tickets.length; i++) {
+        if (tickets[i].id === id) {
+            tickets[i].titulo      = titulo;
+            tickets[i].solicitante = solicitante;
+            tickets[i].email       = email;
+            tickets[i].categoria   = categoria;
+            tickets[i].prioridad   = prioridad;
+            tickets[i].estado      = estado;
+            tickets[i].descripcion = descripcion;
+            break;
+        }
+    }
+    guardarTickets(tickets);
+
+    console.log('Ticket ' + id + ' actualizado correctamente.');
+
+    cerrarModal();
+    actualizarDashboard();
+    renderizarTicketsRecientes();
+    renderizarTablaTickets();
+
+    alert('Ticket ' + id + ' actualizado correctamente.');
 }
 
 // Eliminar ticket con confirm()

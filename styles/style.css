@@ -645,6 +645,8 @@ table tbody tr:last-child td {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    margin-right: 6px;
+    margin-bottom: 6px;
 }
 
 .action-btn.view {
@@ -1369,6 +1371,54 @@ footer {
     border-top: 1px solid var(--border);
     display: flex;
     justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Formulario de edición dentro del modal */
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.modal-form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+}
+
+.modal-form .form-group input,
+.modal-form .form-group select,
+.modal-form .form-group textarea {
+    padding: 10px 12px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+    background-color: var(--surface);
+    width: 100%;
+}
+
+.modal-form .form-group input:focus,
+.modal-form .form-group select:focus,
+.modal-form .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.modal-form .form-group label {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    display: block;
+}
+
+.modal-form .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
 }
 
 .modal-detail {
