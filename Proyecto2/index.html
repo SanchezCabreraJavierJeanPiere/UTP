@@ -20,7 +20,7 @@
     <!-- ===== HEADER ===== -->
     <header>
         <div class="header-container">
-            <a href="#" class="logo">
+            <a href="index.html" class="logo">
                 <div class="logo-icon">
                     <i class="fas fa-ticket-alt"></i>
                 </div>
@@ -33,11 +33,11 @@
 
             <nav id="mainNav">
                 <ul>
-                    <li><a href="#hero" class="active"><i class="fas fa-home"></i> Inicio</a></li>
-                    <li><a href="#dashboard"><i class="fas fa-chart-pie"></i> Dashboard</a></li>
-                    <li><a href="#nuevo-ticket"><i class="fas fa-plus-circle"></i> Nuevo Ticket</a></li>
-                    <li><a href="#mis-tickets"><i class="fas fa-list-alt"></i> Mis Tickets</a></li>
-                    <li><a href="#contacto"><i class="fas fa-headset"></i> Soporte</a></li>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="dashboard.html"><i class="fas fa-chart-pie"></i> Dashboard</a></li>
+                    <li><a href="nuevo-ticket.html"><i class="fas fa-plus-circle"></i> Nuevo Ticket</a></li>
+                    <li><a href="mis-tickets.html"><i class="fas fa-list-alt"></i> Mis Tickets</a></li>
+                    <li><a href="soporte.html"><i class="fas fa-headset"></i> Soporte</a></li>
                 </ul>
             </nav>
         </div>
@@ -50,336 +50,154 @@
             <p>Administra tus solicitudes de soporte de manera eficiente y profesional.
                Crea, rastrea y resuelve tickets en un solo lugar.</p>
             <div class="hero-buttons">
-                <a href="#nuevo-ticket" class="btn btn-primary">
+                <a href="nuevo-ticket.html" class="btn btn-primary">
                     <i class="fas fa-plus-circle"></i> Crear Ticket
                 </a>
-                <a href="#mis-tickets" class="btn btn-outline">
-                    <i class="fas fa-list-alt"></i> Ver Mis Tickets
-                </a>
+                <!-- onclick para crear ticket rápido usando prompt/alert/confirm -->
+                <button class="btn btn-outline" onclick="crearTicketRapido()">
+                    <i class="fas fa-bolt"></i> Ticket Rápido
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- ===== MAIN CONTENT ===== -->
+    <!-- ===== MAIN LANDING CONTENT ===== -->
     <main>
-        <!-- ===== DASHBOARD SECTION (GRID) ===== -->
-        <section id="dashboard">
-            <div class="section-header">
-                <h2><i class="fas fa-chart-pie"></i> Dashboard</h2>
-                <p>Resumen del estado actual de todos los tickets del sistema.</p>
+
+        <!-- ===== FEATURES SECTION ===== -->
+        <section class="landing-section" id="features">
+            <div class="landing-header">
+                <span class="landing-badge">¿Por qué elegirnos?</span>
+                <h2>Todo lo que necesitas en un solo lugar</h2>
+                <p>JeanDesa centraliza tu soporte técnico para que nunca pierdas de vista ningún problema.</p>
             </div>
 
-            <div class="stats-grid">
-                <article class="stat-card">
-                    <div class="stat-icon abierto">
-                        <i class="fas fa-folder-open"></i>
+            <div class="features-grid">
+                <article class="feature-card" onmouseover="resaltarCard(this)" onmouseout="restaurarCard(this)">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #4F46E5, #818CF8);">
+                        <i class="fas fa-bolt"></i>
                     </div>
-                    <div class="stat-info">
-                        <span class="stat-number" id="count-abiertos">0</span>
-                        <span class="stat-label">Tickets Abiertos</span>
-                    </div>
+                    <h3>Tickets al instante</h3>
+                    <p>Crea una solicitud de soporte en segundos, sin formularios complicados ni esperas innecesarias.</p>
+                    <a href="nuevo-ticket.html" class="feature-link">Crear ahora <i class="fas fa-arrow-right"></i></a>
                 </article>
 
-                <article class="stat-card">
-                    <div class="stat-icon proceso">
-                        <i class="fas fa-spinner"></i>
+                <article class="feature-card" onmouseover="resaltarCard(this)" onmouseout="restaurarCard(this)">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #06B6D4, #0891B2);">
+                        <i class="fas fa-chart-line"></i>
                     </div>
-                    <div class="stat-info">
-                        <span class="stat-number" id="count-proceso">0</span>
-                        <span class="stat-label">En Proceso</span>
-                    </div>
+                    <h3>Seguimiento en tiempo real</h3>
+                    <p>Monitorea el estado de cada ticket desde el dashboard. Siempre sabrás en qué etapa está tu solicitud.</p>
+                    <a href="dashboard.html" class="feature-link">Ver dashboard <i class="fas fa-arrow-right"></i></a>
                 </article>
 
-                <article class="stat-card">
-                    <div class="stat-icon resuelto">
-                        <i class="fas fa-check-circle"></i>
+                <article class="feature-card" onmouseover="resaltarCard(this)" onmouseout="restaurarCard(this)">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #10B981, #059669);">
+                        <i class="fas fa-layer-group"></i>
                     </div>
-                    <div class="stat-info">
-                        <span class="stat-number" id="count-resueltos">0</span>
-                        <span class="stat-label">Resueltos</span>
-                    </div>
+                    <h3>Priorización inteligente</h3>
+                    <p>Clasifica tus tickets por urgencia: Baja, Media, Alta o Crítica. Atendemos primero lo que más importa.</p>
+                    <a href="mis-tickets.html" class="feature-link">Mis tickets <i class="fas fa-arrow-right"></i></a>
                 </article>
 
-                <article class="stat-card">
-                    <div class="stat-icon cerrado">
-                        <i class="fas fa-archive"></i>
+                <article class="feature-card" onmouseover="resaltarCard(this)" onmouseout="restaurarCard(this)">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #F59E0B, #D97706);">
+                        <i class="fas fa-headset"></i>
                     </div>
-                    <div class="stat-info">
-                        <span class="stat-number" id="count-cerrados">0</span>
-                        <span class="stat-label">Cerrados</span>
-                    </div>
+                    <h3>Soporte dedicado</h3>
+                    <p>Nuestro equipo está disponible de Lunes a Viernes. Consulta nuestra base de preguntas frecuentes.</p>
+                    <a href="soporte.html" class="feature-link">Ir a soporte <i class="fas fa-arrow-right"></i></a>
                 </article>
             </div>
+        </section>
 
-            <div class="recent-tickets">
-                <h3><i class="fas fa-clock"></i> Tickets Recientes</h3>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Título</th>
-                                <th>Estado</th>
-                                <th>Prioridad</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabla-recientes">
-                            <!-- Se llena con JavaScript -->
-                        </tbody>
-                    </table>
+        <!-- ===== STATS SECTION ===== -->
+        <section class="stats-banner" id="stats-banner">
+            <div class="stats-banner-inner">
+                <div class="stat-banner-item">
+                    <span class="stat-banner-number" id="live-total">0</span>
+                    <span class="stat-banner-label">Tickets registrados</span>
+                </div>
+                <div class="stat-banner-divider"></div>
+                <div class="stat-banner-item">
+                    <span class="stat-banner-number" id="live-resueltos">0</span>
+                    <span class="stat-banner-label">Tickets resueltos</span>
+                </div>
+                <div class="stat-banner-divider"></div>
+                <div class="stat-banner-item">
+                    <span class="stat-banner-number">4</span>
+                    <span class="stat-banner-label">Categorías de soporte</span>
+                </div>
+                <div class="stat-banner-divider"></div>
+                <div class="stat-banner-item">
+                    <span class="stat-banner-number">24/7</span>
+                    <span class="stat-banner-label">Sistema disponible</span>
                 </div>
             </div>
         </section>
 
-        <!-- ===== NUEVO TICKET SECTION (GRID FORM) ===== -->
-        <section id="nuevo-ticket">
-            <div class="section-header">
-                <h2><i class="fas fa-plus-circle"></i> Crear Nuevo Ticket</h2>
-                <p>Complete el formulario para registrar su solicitud de soporte técnico.</p>
+        <!-- ===== HOW IT WORKS SECTION ===== -->
+        <section class="landing-section" id="como-funciona">
+            <div class="landing-header">
+                <span class="landing-badge">Simple y rápido</span>
+                <h2>¿Cómo funciona?</h2>
+                <p>En solo cuatro pasos tu problema tiene solución.</p>
             </div>
 
-            <div class="form-container">
-                <div class="alert alert-success" id="alerta-exito">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Ticket creado exitosamente.</span>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon"><i class="fas fa-pen-to-square"></i></div>
+                    <h3>Crea tu ticket</h3>
+                    <p>Completa el formulario con el título, categoría, prioridad y descripción del problema.</p>
                 </div>
 
-                <form id="form-ticket">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="solicitante">
-                                Nombre del Solicitante <span class="required">*</span>
-                            </label>
-                            <input
-                                type="text"
-                                id="solicitante"
-                                name="solicitante"
-                                placeholder="Ingrese su nombre completo"
-                                required
-                                minlength="2"
-                                maxlength="100"
-                            >
-                        </div>
+                <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
 
-                        <div class="form-group">
-                            <label for="email">
-                                Correo Electrónico <span class="required">*</span>
-                            </label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                placeholder="ejemplo@jeandesa.com"
-                                required
-                            >
-                        </div>
-
-                        <div class="form-group full-width">
-                            <label for="titulo-ticket">
-                                Título del Ticket <span class="required">*</span>
-                            </label>
-                            <input
-                                type="text"
-                                id="titulo-ticket"
-                                name="titulo-ticket"
-                                placeholder="Describa brevemente el problema"
-                                required
-                                minlength="5"
-                                maxlength="150"
-                            >
-                        </div>
-
-                        <div class="form-group">
-                            <label for="categoria">
-                                Categoría <span class="required">*</span>
-                            </label>
-                            <select id="categoria" name="categoria" required>
-                                <option value="" disabled selected>Seleccione una categoría</option>
-                                <option value="software">Software</option>
-                                <option value="hardware">Hardware</option>
-                                <option value="red">Red / Conectividad</option>
-                                <option value="accesos">Accesos / Permisos</option>
-                                <option value="otro">Otro</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="prioridad">
-                                Prioridad <span class="required">*</span>
-                            </label>
-                            <select id="prioridad" name="prioridad" required>
-                                <option value="" disabled selected>Seleccione prioridad</option>
-                                <option value="baja">Baja - Puede esperar</option>
-                                <option value="media">Media - Afecta parcialmente</option>
-                                <option value="alta">Alta - Afecta trabajo</option>
-                                <option value="critica">Crítica - Sistema detenido</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group full-width">
-                            <label for="descripcion">
-                                Descripción del Problema <span class="required">*</span>
-                            </label>
-                            <textarea
-                                id="descripcion"
-                                name="descripcion"
-                                placeholder="Describa detalladamente el problema, incluyendo:
-• Qué estaba haciendo cuando ocurrió
-• Mensaje de error (si aplica)
-• Pasos para reproducir el problema"
-                                required
-                                minlength="20"
-                                maxlength="2000"
-                            ></textarea>
-                        </div>
-
-                        <div class="form-buttons">
-                            <button type="submit" class="btn btn-submit">
-                                <i class="fas fa-paper-plane"></i> Enviar Ticket
-                            </button>
-                            <button type="reset" class="btn btn-secondary">
-                                <i class="fas fa-eraser"></i> Limpiar
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </section>
-
-        <!-- ===== MIS TICKETS SECTION ===== -->
-        <section id="mis-tickets">
-            <div class="section-header">
-                <h2><i class="fas fa-list-alt"></i> Mis Tickets</h2>
-                <p>Consulte el estado de todas sus solicitudes de soporte.</p>
-            </div>
-
-            <!-- Filtros con Flexbox -->
-            <div class="filters-container">
-                <div class="filter-group">
-                    <label for="filtro-estado">Estado:</label>
-                    <select id="filtro-estado">
-                        <option value="">Todos</option>
-                        <option value="abierto">Abierto</option>
-                        <option value="proceso">En Proceso</option>
-                        <option value="resuelto">Resuelto</option>
-                        <option value="cerrado">Cerrado</option>
-                    </select>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon"><i class="fas fa-user-check"></i></div>
+                    <h3>Asignamos un especialista</h3>
+                    <p>Nuestro equipo recibe tu solicitud y la asigna al técnico más capacitado.</p>
                 </div>
 
-                <div class="filter-group">
-                    <label for="filtro-prioridad">Prioridad:</label>
-                    <select id="filtro-prioridad">
-                        <option value="">Todas</option>
-                        <option value="baja">Baja</option>
-                        <option value="media">Media</option>
-                        <option value="alta">Alta</option>
-                        <option value="critica">Crítica</option>
-                    </select>
+                <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon"><i class="fas fa-screwdriver-wrench"></i></div>
+                    <h3>Resolvemos el problema</h3>
+                    <p>El especialista trabaja en tu ticket y actualiza el estado en tiempo real.</p>
                 </div>
 
-                <div class="filter-group">
-                    <label for="filtro-categoria">Categoría:</label>
-                    <select id="filtro-categoria">
-                        <option value="">Todas</option>
-                        <option value="software">Software</option>
-                        <option value="hardware">Hardware</option>
-                        <option value="red">Red</option>
-                        <option value="accesos">Accesos</option>
-                        <option value="otro">Otro</option>
-                    </select>
-                </div>
-            </div>
+                <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
 
-            <!-- Tabla de tickets -->
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID Ticket</th>
-                            <th>Título</th>
-                            <th>Categoría</th>
-                            <th>Prioridad</th>
-                            <th>Estado</th>
-                            <th>Fecha</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabla-tickets">
-                        <!-- Se llena con JavaScript -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- ===== CONTACTO/SOPORTE SECTION (GRID) ===== -->
-        <section id="contacto">
-            <div class="section-header">
-                <h2><i class="fas fa-headset"></i> Centro de Soporte</h2>
-                <p>Encuentre respuestas a sus preguntas o contáctenos directamente.</p>
-            </div>
-
-            <div class="contact-grid">
-                <!-- FAQ Section -->
-                <div class="faq-section">
-                    <h3><i class="fas fa-question-circle"></i> Preguntas Frecuentes</h3>
-
-                    <article class="faq-item">
-                        <h4>¿Cómo creo un nuevo ticket?</h4>
-                        <p>Navegue a la sección "Nuevo Ticket" y complete el formulario con la información requerida. Asegúrese de seleccionar la categoría y prioridad correctas.</p>
-                    </article>
-
-                    <article class="faq-item">
-                        <h4>¿Cuánto tiempo tarda la atención?</h4>
-                        <p>Los tiempos varían según la prioridad:<br>
-                        <strong>Crítica:</strong> 1 hora<br>
-                        <strong>Alta:</strong> 4 horas<br>
-                        <strong>Media:</strong> 24 horas<br>
-                        <strong>Baja:</strong> 48 horas</p>
-                    </article>
-
-                    <article class="faq-item">
-                        <h4>¿Cómo defino la prioridad?</h4>
-                        <p><strong>Crítica:</strong> Sistema detenido, afecta toda la operación.<br>
-                        <strong>Alta:</strong> No puede trabajar normalmente.<br>
-                        <strong>Media:</strong> Puede trabajar con dificultad.<br>
-                        <strong>Baja:</strong> Consulta general, puede esperar.</p>
-                    </article>
-
-                    <article class="faq-item">
-                        <h4>¿Dónde veo el estado de mis tickets?</h4>
-                        <p>En la sección "Mis Tickets" puede ver todos sus tickets. Use los filtros para buscar por estado, prioridad o categoría.</p>
-                    </article>
-                </div>
-
-                <!-- Support Contact Section -->
-                <div class="support-section">
-                    <h3><i class="fas fa-phone-alt"></i> Contacto de Soporte</h3>
-
-                    <div class="contact-info">
-                        <p><i class="fas fa-envelope"></i> soporte@jeandesa.com</p>
-                        <p><i class="fas fa-phone"></i> +51 999 888 777</p>
-                        <p><i class="fas fa-clock"></i> Lunes a Viernes: 8:00 AM - 6:00 PM</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Oficina: Edificio Principal, Piso 2</p>
-                    </div>
-
-                    <!-- Video Tutorial -->
-                    <div class="video-container">
-                        <h4><i class="fas fa-play-circle"></i> Video Tutorial</h4>
-                        <video controls>
-                            <source src="media/YTDown.com_YouTube_AboutMe-Video-Vova-Melnykov-Schauspieler_Media_6YZbpWTd0wc_003_360p.mp4" type="video/mp4">
-                            <p>Tu navegador no soporta el elemento de video.</p>
-                        </video>
-                        <p class="video-caption">Aprende a usar el sistema de tickets de JeanDesa.</p>
-                    </div>
-
-                    <!-- Imagen del equipo -->
-                    <div class="image-container">
-                        <img src="media/trabajo-para-ingeniero-de-sistemas-.webp" alt="Equipo de soporte técnico JeanDesa">
-                        <p class="image-caption">Nuestro equipo de soporte está listo para ayudarte.</p>
-                    </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-icon"><i class="fas fa-circle-check"></i></div>
+                    <h3>Confirmamos la solución</h3>
+                    <p>Te notificamos cuando el ticket está resuelto. ¡Listo, problema solucionado!</p>
                 </div>
             </div>
         </section>
+
+        <!-- ===== CTA SECTION ===== -->
+        <section class="cta-section" id="cta">
+            <div class="cta-inner">
+                <div class="cta-icon"><i class="fas fa-rocket"></i></div>
+                <h2>¿Tienes un problema técnico ahora?</h2>
+                <p>No esperes más. Crea tu ticket en menos de un minuto y nuestro equipo lo atenderá de inmediato.</p>
+                <div class="cta-buttons">
+                    <a href="nuevo-ticket.html" class="btn btn-cta-primary">
+                        <i class="fas fa-plus-circle"></i> Crear Ticket Ahora
+                    </a>
+                    <a href="soporte.html" class="btn btn-cta-outline">
+                        <i class="fas fa-question-circle"></i> Ver Preguntas Frecuentes
+                    </a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- ===== FOOTER ===== -->
@@ -394,10 +212,10 @@
 
                 <div class="footer-col">
                     <h4><i class="fas fa-link"></i> Enlaces Rápidos</h4>
-                    <p><a href="#dashboard">Dashboard</a></p>
-                    <p><a href="#nuevo-ticket">Crear Ticket</a></p>
-                    <p><a href="#mis-tickets">Ver Tickets</a></p>
-                    <p><a href="#contacto">Soporte</a></p>
+                    <p><a href="dashboard.html">Dashboard</a></p>
+                    <p><a href="nuevo-ticket.html">Crear Ticket</a></p>
+                    <p><a href="mis-tickets.html">Ver Tickets</a></p>
+                    <p><a href="soporte.html">Soporte</a></p>
                 </div>
 
                 <div class="footer-col">
@@ -414,419 +232,7 @@
         </div>
     </footer>
 
-    <!-- ===== JAVASCRIPT ===== -->
-    <script>
-        // ===== SISTEMA DE TICKETS JEANDESA =====
-
-        // Datos de ejemplo
-        const ticketsEjemplo = [
-            {
-                id: 'TKT-001',
-                titulo: 'Computadora no enciende',
-                solicitante: 'María García',
-                email: 'maria@jeandesa.com',
-                categoria: 'hardware',
-                prioridad: 'alta',
-                estado: 'abierto',
-                descripcion: 'Mi computadora no enciende desde esta mañana.',
-                fecha: '2026-02-05'
-            },
-            {
-                id: 'TKT-002',
-                titulo: 'Solicitud acceso a carpeta compartida',
-                solicitante: 'Carlos López',
-                email: 'carlos@jeandesa.com',
-                categoria: 'accesos',
-                prioridad: 'media',
-                estado: 'proceso',
-                descripcion: 'Necesito acceso a la carpeta de proyectos.',
-                fecha: '2026-02-04'
-            },
-            {
-                id: 'TKT-003',
-                titulo: 'Error al abrir Excel',
-                solicitante: 'Ana Torres',
-                email: 'ana@jeandesa.com',
-                categoria: 'software',
-                prioridad: 'baja',
-                estado: 'resuelto',
-                descripcion: 'Excel muestra error al intentar abrir archivos.',
-                fecha: '2026-02-03'
-            },
-            {
-                id: 'TKT-004',
-                titulo: 'Internet lento en oficina 3er piso',
-                solicitante: 'Juan Pérez',
-                email: 'juan@jeandesa.com',
-                categoria: 'red',
-                prioridad: 'critica',
-                estado: 'proceso',
-                descripcion: 'La conexión a internet es muy lenta, afecta a todo el piso.',
-                fecha: '2026-02-02'
-            },
-            {
-                id: 'TKT-005',
-                titulo: 'Instalación de Antivirus',
-                solicitante: 'Pedro Sánchez',
-                email: 'pedro@jeandesa.com',
-                categoria: 'software',
-                prioridad: 'baja',
-                estado: 'cerrado',
-                descripcion: 'Solicito instalación del antivirus corporativo.',
-                fecha: '2026-02-01'
-            }
-        ];
-
-        // Inicializar tickets en localStorage
-        function inicializarTickets() {
-            if (!localStorage.getItem('tickets2')) {
-                localStorage.setItem('tickets2', JSON.stringify(ticketsEjemplo));
-            }
-        }
-
-        // Obtener tickets
-        function obtenerTickets() {
-            const tickets = localStorage.getItem('tickets2');
-            return tickets ? JSON.parse(tickets) : [];
-        }
-
-        // Guardar tickets
-        function guardarTickets(tickets) {
-            localStorage.setItem('tickets2', JSON.stringify(tickets));
-        }
-
-        // Generar nuevo ID
-        function generarIdTicket() {
-            const tickets = obtenerTickets();
-            if (tickets.length === 0) return 'TKT-001';
-
-            const ultimoId = tickets.reduce((max, t) => {
-                const num = parseInt(t.id.split('-')[1]);
-                return num > max ? num : max;
-            }, 0);
-
-            return 'TKT-' + String(ultimoId + 1).padStart(3, '0');
-        }
-
-        // Obtener fecha actual
-        function obtenerFechaActual() {
-            const hoy = new Date();
-            return hoy.toISOString().split('T')[0];
-        }
-
-        // Actualizar dashboard
-        function actualizarDashboard() {
-            const tickets = obtenerTickets();
-
-            document.getElementById('count-abiertos').textContent =
-                tickets.filter(t => t.estado === 'abierto').length;
-            document.getElementById('count-proceso').textContent =
-                tickets.filter(t => t.estado === 'proceso').length;
-            document.getElementById('count-resueltos').textContent =
-                tickets.filter(t => t.estado === 'resuelto').length;
-            document.getElementById('count-cerrados').textContent =
-                tickets.filter(t => t.estado === 'cerrado').length;
-        }
-
-        // Renderizar tickets recientes
-        function renderizarTicketsRecientes() {
-            const tickets = obtenerTickets();
-            const tbody = document.getElementById('tabla-recientes');
-
-            const recientes = [...tickets]
-                .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
-                .slice(0, 5);
-
-            if (recientes.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="4">
-                            <div class="no-tickets">
-                                <i class="fas fa-inbox"></i>
-                                <p>No hay tickets recientes</p>
-                            </div>
-                        </td>
-                    </tr>`;
-                return;
-            }
-
-            tbody.innerHTML = recientes.map(ticket => `
-                <tr>
-                    <td><strong>${ticket.id}</strong></td>
-                    <td>${ticket.titulo}</td>
-                    <td>
-                        <span class="badge badge-${ticket.estado}">
-                            <i class="${obtenerIconoEstado(ticket.estado)}"></i>
-                            ${obtenerTextoEstado(ticket.estado)}
-                        </span>
-                    </td>
-                    <td class="priority priority-${ticket.prioridad}">
-                        <i class="${obtenerIconoPrioridad(ticket.prioridad)}"></i>
-                        ${obtenerTextoPrioridad(ticket.prioridad)}
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-        // Renderizar tabla de tickets con filtros
-        function renderizarTablaTickets() {
-            const tickets = obtenerTickets();
-            const tbody = document.getElementById('tabla-tickets');
-
-            const filtroEstado = document.getElementById('filtro-estado').value;
-            const filtroPrioridad = document.getElementById('filtro-prioridad').value;
-            const filtroCategoria = document.getElementById('filtro-categoria').value;
-
-            let ticketsFiltrados = tickets;
-
-            if (filtroEstado) {
-                ticketsFiltrados = ticketsFiltrados.filter(t => t.estado === filtroEstado);
-            }
-            if (filtroPrioridad) {
-                ticketsFiltrados = ticketsFiltrados.filter(t => t.prioridad === filtroPrioridad);
-            }
-            if (filtroCategoria) {
-                ticketsFiltrados = ticketsFiltrados.filter(t => t.categoria === filtroCategoria);
-            }
-
-            ticketsFiltrados.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-
-            if (ticketsFiltrados.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="7">
-                            <div class="no-tickets">
-                                <i class="fas fa-search"></i>
-                                <p>No se encontraron tickets con los filtros seleccionados</p>
-                            </div>
-                        </td>
-                    </tr>`;
-                return;
-            }
-
-            tbody.innerHTML = ticketsFiltrados.map(ticket => `
-                <tr data-id="${ticket.id}">
-                    <td><strong>${ticket.id}</strong></td>
-                    <td>${ticket.titulo}</td>
-                    <td>${obtenerTextoCategoria(ticket.categoria)}</td>
-                    <td class="priority priority-${ticket.prioridad}">
-                        <i class="${obtenerIconoPrioridad(ticket.prioridad)}"></i>
-                        ${obtenerTextoPrioridad(ticket.prioridad)}
-                    </td>
-                    <td>
-                        <span class="badge badge-${ticket.estado}">
-                            <i class="${obtenerIconoEstado(ticket.estado)}"></i>
-                            ${obtenerTextoEstado(ticket.estado)}
-                        </span>
-                    </td>
-                    <td>${ticket.fecha}</td>
-                    <td>
-                        <button class="action-btn view" onclick="verTicket('${ticket.id}')">
-                            <i class="fas fa-eye"></i> Ver
-                        </button>
-                        <button class="action-btn delete" onclick="eliminarTicket('${ticket.id}')">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
-
-            tbody.innerHTML += `
-                <tr class="summary-row">
-                    <td colspan="3"><strong>Total de tickets mostrados</strong></td>
-                    <td colspan="4"><strong>${ticketsFiltrados.length} ticket(s)</strong></td>
-                </tr>
-            `;
-        }
-
-        // Funciones auxiliares para textos e iconos
-        function obtenerTextoEstado(estado) {
-            const estados = {
-                'abierto': 'Abierto',
-                'proceso': 'En Proceso',
-                'resuelto': 'Resuelto',
-                'cerrado': 'Cerrado'
-            };
-            return estados[estado] || estado;
-        }
-
-        function obtenerTextoPrioridad(prioridad) {
-            const prioridades = {
-                'baja': 'Baja',
-                'media': 'Media',
-                'alta': 'Alta',
-                'critica': 'Crítica'
-            };
-            return prioridades[prioridad] || prioridad;
-        }
-
-        function obtenerTextoCategoria(categoria) {
-            const categorias = {
-                'software': 'Software',
-                'hardware': 'Hardware',
-                'red': 'Red',
-                'accesos': 'Accesos',
-                'otro': 'Otro'
-            };
-            return categorias[categoria] || categoria;
-        }
-
-        function obtenerIconoEstado(estado) {
-            const iconos = {
-                'abierto': 'fas fa-folder-open',
-                'proceso': 'fas fa-spinner',
-                'resuelto': 'fas fa-check-circle',
-                'cerrado': 'fas fa-archive'
-            };
-            return iconos[estado] || 'fas fa-circle';
-        }
-
-        function obtenerIconoPrioridad(prioridad) {
-            const iconos = {
-                'baja': 'fas fa-arrow-down',
-                'media': 'fas fa-minus',
-                'alta': 'fas fa-arrow-up',
-                'critica': 'fas fa-fire'
-            };
-            return iconos[prioridad] || 'fas fa-circle';
-        }
-
-        // Ver detalle de ticket
-        function verTicket(id) {
-            const tickets = obtenerTickets();
-            const ticket = tickets.find(t => t.id === id);
-
-            if (ticket) {
-                alert(
-                    `═══════════════════════════════\n` +
-                    `       DETALLE DEL TICKET\n` +
-                    `═══════════════════════════════\n\n` +
-                    `ID: ${ticket.id}\n` +
-                    `Título: ${ticket.titulo}\n` +
-                    `Solicitante: ${ticket.solicitante}\n` +
-                    `Email: ${ticket.email}\n` +
-                    `Categoría: ${obtenerTextoCategoria(ticket.categoria)}\n` +
-                    `Prioridad: ${obtenerTextoPrioridad(ticket.prioridad)}\n` +
-                    `Estado: ${obtenerTextoEstado(ticket.estado)}\n` +
-                    `Fecha: ${ticket.fecha}\n\n` +
-                    `Descripción:\n${ticket.descripcion}`
-                );
-            }
-        }
-
-        // Eliminar ticket
-        function eliminarTicket(id) {
-            if (confirm('¿Está seguro de eliminar este ticket?')) {
-                let tickets = obtenerTickets();
-                tickets = tickets.filter(t => t.id !== id);
-                guardarTickets(tickets);
-
-                actualizarDashboard();
-                renderizarTicketsRecientes();
-                renderizarTablaTickets();
-            }
-        }
-
-        // Manejar envío del formulario
-        document.getElementById('form-ticket').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const nuevoTicket = {
-                id: generarIdTicket(),
-                solicitante: document.getElementById('solicitante').value,
-                email: document.getElementById('email').value,
-                titulo: document.getElementById('titulo-ticket').value,
-                categoria: document.getElementById('categoria').value,
-                prioridad: document.getElementById('prioridad').value,
-                descripcion: document.getElementById('descripcion').value,
-                estado: 'abierto',
-                fecha: obtenerFechaActual()
-            };
-
-            const tickets = obtenerTickets();
-            tickets.push(nuevoTicket);
-            guardarTickets(tickets);
-
-            const alerta = document.getElementById('alerta-exito');
-            alerta.style.display = 'flex';
-            alerta.querySelector('span').textContent = `Ticket ${nuevoTicket.id} creado exitosamente.`;
-
-            setTimeout(() => {
-                alerta.style.display = 'none';
-            }, 5000);
-
-            this.reset();
-
-            actualizarDashboard();
-            renderizarTicketsRecientes();
-            renderizarTablaTickets();
-
-            document.getElementById('mis-tickets').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        // Event listeners para filtros
-        document.getElementById('filtro-estado').addEventListener('change', renderizarTablaTickets);
-        document.getElementById('filtro-prioridad').addEventListener('change', renderizarTablaTickets);
-        document.getElementById('filtro-categoria').addEventListener('change', renderizarTablaTickets);
-
-        // Menú hamburguesa
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            const nav = document.getElementById('mainNav');
-            nav.classList.toggle('active');
-
-            const icon = this.querySelector('i');
-            if (nav.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        // Cerrar menú al hacer clic en un enlace
-        document.querySelectorAll('#mainNav a').forEach(link => {
-            link.addEventListener('click', () => {
-                const nav = document.getElementById('mainNav');
-                const toggle = document.getElementById('menuToggle');
-
-                if (window.innerWidth <= 768) {
-                    nav.classList.remove('active');
-                    toggle.querySelector('i').classList.remove('fa-times');
-                    toggle.querySelector('i').classList.add('fa-bars');
-                }
-            });
-        });
-
-        // Navegación activa
-        const navLinks = document.querySelectorAll('#mainNav a');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const sections = document.querySelectorAll('section[id], .hero');
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (window.scrollY >= sectionTop) {
-                    current = section.getAttribute('id') || 'hero';
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Inicializar aplicación
-        document.addEventListener('DOMContentLoaded', function() {
-            inicializarTickets();
-            actualizarDashboard();
-            renderizarTicketsRecientes();
-            renderizarTablaTickets();
-        });
-    </script>
+    <!-- ===== JAVASCRIPT EXTERNO ===== -->
+    <script src="app.js"></script>
 </body>
 </html>

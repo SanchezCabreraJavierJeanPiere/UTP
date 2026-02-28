@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - JeanDesa</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/style.css">
+
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-ticket-alt"></i>
+                </div>
+                <span class="logo-text">JeanDesa</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="dashboard.html"><i class="fas fa-chart-pie"></i> Dashboard</a></li>
+                    <li><a href="nuevo-ticket.html"><i class="fas fa-plus-circle"></i> Nuevo Ticket</a></li>
+                    <li><a href="mis-tickets.html"><i class="fas fa-list-alt"></i> Mis Tickets</a></li>
+                    <li><a href="soporte.html"><i class="fas fa-headset"></i> Soporte</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main>
+        <!-- ===== DASHBOARD SECTION (GRID) ===== -->
+        <section id="dashboard">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-pie"></i> Dashboard</h2>
+                <p>Resumen del estado actual de todos los tickets del sistema.</p>
+            </div>
+
+            <div class="stats-grid">
+                <!-- onmouseover y onmouseout en las tarjetas de estadísticas -->
+                <article class="stat-card" onmouseover="resaltarCard(this)" onmouseout="restaurarCard(this)">
+                    <div class="stat-icon abierto">
+                        <i class="fas fa-folder-open"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="count-abiertos">0</span>
+                        <span class="stat-label">Tickets Abiertos</span>
+                    </div>
+                </article>
+
+                <article class="stat-card" onmouseover="resaltarCard(this)" onmouseout="restaurarCard(this)">
+                    <div class="stat-icon proceso">
+                        <i class="fas fa-spinner"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="count-proceso">0</span>
+                        <span class="stat-label">En Proceso</span>
+                    </div>
+                </article>
+
+                <article class="stat-card" onmouseover="resaltarCard(this)" onmouseout="restaurarCard(this)">
+                    <div class="stat-icon resuelto">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="count-resueltos">0</span>
+                        <span class="stat-label">Resueltos</span>
+                    </div>
+                </article>
+
+                <article class="stat-card" onmouseover="resaltarCard(this)" onmouseout="restaurarCard(this)">
+                    <div class="stat-icon cerrado">
+                        <i class="fas fa-archive"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-number" id="count-cerrados">0</span>
+                        <span class="stat-label">Cerrados</span>
+                    </div>
+                </article>
+            </div>
+
+            <div class="recent-tickets">
+                <h3><i class="fas fa-clock"></i> Tickets Recientes</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Título</th>
+                                <th>Estado</th>
+                                <th>Prioridad</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-recientes">
+                            <!-- Se llena con JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== MODAL DE DETALLE DE TICKET ===== -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modalTicket">
+            <button class="modal-close" id="modalClose" aria-label="Cerrar modal">&times;</button>
+            <div class="modal-header">
+                <h3 id="modal-titulo"></h3>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Contenido llenado dinámicamente con JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="cerrarModal()">
+                    <i class="fas fa-times"></i> Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><i class="fas fa-ticket-alt"></i> JeanDesa</h4>
+                    <p>Sistema de Gestión de Tickets</p>
+                    <p>Optimizando la gestión de soporte técnico desde 2026.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4><i class="fas fa-link"></i> Enlaces Rápidos</h4>
+                    <p><a href="dashboard.html">Dashboard</a></p>
+                    <p><a href="nuevo-ticket.html">Crear Ticket</a></p>
+                    <p><a href="mis-tickets.html">Ver Tickets</a></p>
+                    <p><a href="soporte.html">Soporte</a></p>
+                </div>
+
+                <div class="footer-col">
+                    <h4><i class="fas fa-envelope"></i> Contacto</h4>
+                    <p>Email: <a href="mailto:soporte@jeandesa.com">soporte@jeandesa.com</a></p>
+                    <p>Teléfono: +51 999 888 777</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 JeanDesa. Todos los derechos reservados.</p>
+                <p>Desarrollado por Jean Piere Sánchez - UTP Taller de Programación Web</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT EXTERNO ===== -->
+    <script src="app.js"></script>
+</body>
+</html>

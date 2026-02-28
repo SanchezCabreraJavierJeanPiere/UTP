@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soporte - JeanDesa</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/style.css">
+
+</head>
+<body>
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-ticket-alt"></i>
+                </div>
+                <span class="logo-text">JeanDesa</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="dashboard.html"><i class="fas fa-chart-pie"></i> Dashboard</a></li>
+                    <li><a href="nuevo-ticket.html"><i class="fas fa-plus-circle"></i> Nuevo Ticket</a></li>
+                    <li><a href="mis-tickets.html"><i class="fas fa-list-alt"></i> Mis Tickets</a></li>
+                    <li><a href="soporte.html"><i class="fas fa-headset"></i> Soporte</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main>
+        <!-- ===== CONTACTO/SOPORTE SECTION (GRID) ===== -->
+        <section id="contacto">
+            <div class="section-header">
+                <h2><i class="fas fa-headset"></i> Centro de Soporte</h2>
+                <p>Encuentre respuestas a sus preguntas o contáctenos directamente.</p>
+            </div>
+
+            <div class="contact-grid">
+                <!-- FAQ Section -->
+                <div class="faq-section">
+                    <h3><i class="fas fa-question-circle"></i> Preguntas Frecuentes</h3>
+
+                    <article class="faq-item">
+                        <h4>¿Cómo creo un nuevo ticket?</h4>
+                        <p>Navegue a la sección "Nuevo Ticket" y complete el formulario con la información requerida. Asegúrese de seleccionar la categoría y prioridad correctas.</p>
+                    </article>
+
+                    <article class="faq-item">
+                        <h4>¿Cuánto tiempo tarda la atención?</h4>
+                        <p>Los tiempos varían según la prioridad:<br>
+                        <strong>Crítica:</strong> 1 hora<br>
+                        <strong>Alta:</strong> 4 horas<br>
+                        <strong>Media:</strong> 24 horas<br>
+                        <strong>Baja:</strong> 48 horas</p>
+                    </article>
+
+                    <article class="faq-item">
+                        <h4>¿Cómo defino la prioridad?</h4>
+                        <p><strong>Crítica:</strong> Sistema detenido, afecta toda la operación.<br>
+                        <strong>Alta:</strong> No puede trabajar normalmente.<br>
+                        <strong>Media:</strong> Puede trabajar con dificultad.<br>
+                        <strong>Baja:</strong> Consulta general, puede esperar.</p>
+                    </article>
+
+                    <article class="faq-item">
+                        <h4>¿Dónde veo el estado de mis tickets?</h4>
+                        <p>En la sección "Mis Tickets" puede ver todos sus tickets. Use los filtros para buscar por estado, prioridad o categoría.</p>
+                    </article>
+                </div>
+
+                <!-- Support Contact Section -->
+                <div class="support-section">
+                    <h3><i class="fas fa-phone-alt"></i> Contacto de Soporte</h3>
+
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> soporte@jeandesa.com</p>
+                        <p><i class="fas fa-phone"></i> +51 999 888 777</p>
+                        <p><i class="fas fa-clock"></i> Lunes a Viernes: 8:00 AM - 6:00 PM</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Oficina: Edificio Principal, Piso 2</p>
+                    </div>
+
+                    <!-- Video Tutorial -->
+                    <div class="video-container">
+                        <h4><i class="fas fa-play-circle"></i> Video Tutorial</h4>
+                        <video controls>
+                            <source src="media/YTDown.com_YouTube_AboutMe-Video-Vova-Melnykov-Schauspieler_Media_6YZbpWTd0wc_003_360p.mp4" type="video/mp4">
+                            <p>Tu navegador no soporta el elemento de video.</p>
+                        </video>
+                        <p class="video-caption">Aprende a usar el sistema de tickets de JeanDesa.</p>
+                    </div>
+
+                    <!-- Imagen del equipo -->
+                    <div class="image-container">
+                        <img src="media/trabajo-para-ingeniero-de-sistemas-.webp" alt="Equipo de soporte técnico JeanDesa">
+                        <p class="image-caption">Nuestro equipo de soporte está listo para ayudarte.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><i class="fas fa-ticket-alt"></i> JeanDesa</h4>
+                    <p>Sistema de Gestión de Tickets</p>
+                    <p>Optimizando la gestión de soporte técnico desde 2026.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4><i class="fas fa-link"></i> Enlaces Rápidos</h4>
+                    <p><a href="dashboard.html">Dashboard</a></p>
+                    <p><a href="nuevo-ticket.html">Crear Ticket</a></p>
+                    <p><a href="mis-tickets.html">Ver Tickets</a></p>
+                    <p><a href="soporte.html">Soporte</a></p>
+                </div>
+
+                <div class="footer-col">
+                    <h4><i class="fas fa-envelope"></i> Contacto</h4>
+                    <p>Email: <a href="mailto:soporte@jeandesa.com">soporte@jeandesa.com</a></p>
+                    <p>Teléfono: +51 999 888 777</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 JeanDesa. Todos los derechos reservados.</p>
+                <p>Desarrollado por Jean Piere Sánchez - UTP Taller de Programación Web</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== JAVASCRIPT EXTERNO ===== -->
+    <script src="app.js"></script>
+</body>
+</html>
