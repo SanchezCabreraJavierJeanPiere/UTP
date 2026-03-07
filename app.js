@@ -241,25 +241,109 @@ function contarTicketsPorEstado(estado) {
     return contador;
 }
 
+// Mostrar mensaje de error inline bajo el campo
+function mostrarError(campoId, mensaje) {
+    const campo = document.getElementById(campoId);
+    const errorSpan = document.getElementById('error-' + campoId);
+    if (campo && errorSpan) {
+        errorSpan.textContent = mensaje;
+        errorSpan.style.display = 'block';
+        campo.parentElement.classList.add('has-error');
+        campo.parentElement.classList.remove('has-success');
+    }
+}
+
+// Limpiar mensaje de error y marcar como válido
+function limpiarError(campoId) {
+    const campo = document.getElementById(campoId);
+    const errorSpan = document.getElementById('error-' + campoId);
+    if (campo && errorSpan) {
+        errorSpan.textContent = '';
+        errorSpan.style.display = 'none';
+        campo.parentElement.classList.remove('has-error');
+        if (campo.value.trim() !== '') {
+            campo.parentElement.classList.add('has-success');
+        } else {
+            campo.parentElement.classList.remove('has-success');
+        }
+    }
+}
+
+// Validar un campo individual (para corrección en tiempo real)
+function validarCampoIndividual(campoId) {
+    const campo = document.getElementById(campoId);
+    if (!campo) return;
+    const valor = campo.value.trim();
+
+    if (campoId === 'solicitante' || campoId === 'contacto-nombre') {
+        if (valor.length >= 2) { limpiarError(campoId); }
+        else if (valor.length > 0) { mostrarError(campoId, 'Debe tener al menos 2 caracteres.'); }
+    } else if (campoId === 'email' || campoId === 'contacto-email') {
+        if (valor.indexOf('@') !== -1 && valor.indexOf('.') !== -1) { limpiarError(campoId); }
+        else if (valor.length > 0) { mostrarError(campoId, 'Ingrese un correo válido.'); }
+    } else if (campoId === 'titulo-ticket' || campoId === 'contacto-asunto') {
+        if (valor.length >= 5) { limpiarError(campoId); }
+        else if (valor.length > 0) { mostrarError(campoId, 'Debe tener al menos 5 caracteres.'); }
+    } else if (campoId === 'descripcion') {
+        if (valor.length >= 20) { limpiarError(campoId); }
+        else if (valor.length > 0) { mostrarError(campoId, 'Debe tener al menos 20 caracteres.'); }
+    } else if (campoId === 'contacto-mensaje') {
+        if (valor.length >= 10) { limpiarError(campoId); }
+        else if (valor.length > 0) { mostrarError(campoId, 'Debe tener al menos 10 caracteres.'); }
+    } else if (campoId === 'categoria' || campoId === 'prioridad') {
+        if (valor !== '') { limpiarError(campoId); }
+    }
+}
+
 // Validación de formulario con comparaciones (>=, <=, !=)
 function validarFormulario(solicitante, email, titulo, descripcion) {
+    let errores = 0;
+
     if (solicitante.length < 2) {
-        alert("El nombre debe tener al menos 2 caracteres.");
-        return false;
+        mostrarError('solicitante', 'El nombre debe tener al menos 2 caracteres.');
+        errores++;
+    } else {
+        limpiarError('solicitante');
     }
-    if (email.indexOf('@') === -1) {
-        alert("Ingrese un correo electrónico válido.");
-        return false;
+
+    if (email.indexOf('@') === -1 || email.indexOf('.') === -1) {
+        mostrarError('email', 'Ingrese un correo electrónico válido.');
+        errores++;
+    } else {
+        limpiarError('email');
     }
+
     if (titulo.length < 5 || titulo.length > 150) {
-        alert("El título debe tener entre 5 y 150 caracteres.");
-        return false;
+        mostrarError('titulo-ticket', 'El título debe tener entre 5 y 150 caracteres.');
+        errores++;
+    } else {
+        limpiarError('titulo-ticket');
     }
+
+    var categoriaVal = document.getElementById('categoria');
+    if (categoriaVal && categoriaVal.value === '') {
+        mostrarError('categoria', 'Seleccione una categoría.');
+        errores++;
+    } else {
+        limpiarError('categoria');
+    }
+
+    var prioridadVal = document.getElementById('prioridad');
+    if (prioridadVal && prioridadVal.value === '') {
+        mostrarError('prioridad', 'Seleccione una prioridad.');
+        errores++;
+    } else {
+        limpiarError('prioridad');
+    }
+
     if (descripcion.length < 20) {
-        alert("La descripción debe tener al menos 20 caracteres.");
-        return false;
+        mostrarError('descripcion', 'La descripción debe tener al menos 20 caracteres.');
+        errores++;
+    } else {
+        limpiarError('descripcion');
     }
-    return true;
+
+    return errores === 0;
 }
 
 // =====================================================
@@ -368,6 +452,23 @@ function alCambiarPrioridad(select) {
     } else {
         select.style.borderColor = '';
     }
+}
+
+// onclick - toggle FAQ accordion (abrir/cerrar pregunta)
+function toggleFaq(element) {
+    var faqItem = element.parentElement;
+
+    // Cerrar otros FAQs abiertos (comportamiento accordion)
+    var allFaqs = document.querySelectorAll('.faq-item');
+    for (var i = 0; i < allFaqs.length; i++) {
+        if (allFaqs[i] !== faqItem) {
+            allFaqs[i].classList.remove('active');
+        }
+    }
+
+    // Toggle del FAQ clickeado
+    faqItem.classList.toggle('active');
+    console.log("FAQ toggled:", faqItem.querySelector('h4').textContent);
 }
 
 // onmouseover - resaltar tarjeta de estadística
@@ -790,16 +891,25 @@ function guardarEdicionTicket(id) {
     const descripcion = document.getElementById('edit-descripcion').value.trim();
 
     // Validaciones con if / else if y operadores de comparación
+    let erroresEdicion = 0;
+
     if (titulo.length < 5) {
         alert('El título debe tener al menos 5 caracteres.');
-        return;
+        erroresEdicion++;
+    }
+    if (solicitante.length < 2) {
+        alert('El nombre debe tener al menos 2 caracteres.');
+        erroresEdicion++;
     }
     if (email.indexOf('@') === -1) {
         alert('Ingrese un correo electrónico válido.');
-        return;
+        erroresEdicion++;
     }
     if (descripcion.length < 20) {
         alert('La descripción debe tener al menos 20 caracteres.');
+        erroresEdicion++;
+    }
+    if (erroresEdicion > 0) {
         return;
     }
 
@@ -984,6 +1094,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Formulario de nuevo ticket (solo si existe) ---
     const formTicket = document.getElementById('form-ticket');
     if (formTicket) {
+        // Validación en tiempo real: limpiar errores al corregir datos
+        var camposFormulario = ['solicitante', 'email', 'titulo-ticket', 'categoria', 'prioridad', 'descripcion'];
+        for (var c = 0; c < camposFormulario.length; c++) {
+            (function(id) {
+                var campoF = document.getElementById(id);
+                if (campoF) {
+                    var tipoEvento = campoF.tagName === 'SELECT' ? 'change' : 'input';
+                    campoF.addEventListener(tipoEvento, function() {
+                        validarCampoIndividual(id);
+                    });
+                }
+            })(camposFormulario[c]);
+        }
+
         formTicket.addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -1042,6 +1166,19 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('prioridad').style.borderColor = '';
             const catLabel = document.getElementById('categoria').parentElement.querySelector('label');
             if (catLabel) catLabel.style.color = '';
+
+            // Limpiar clases de validación
+            for (var r = 0; r < camposFormulario.length; r++) {
+                var campoReset = document.getElementById(camposFormulario[r]);
+                if (campoReset) {
+                    campoReset.parentElement.classList.remove('has-success', 'has-error');
+                }
+                var errorSpan = document.getElementById('error-' + camposFormulario[r]);
+                if (errorSpan) {
+                    errorSpan.textContent = '';
+                    errorSpan.style.display = 'none';
+                }
+            }
         });
     }
 
@@ -1060,6 +1197,97 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalClose = document.getElementById('modalClose');
     if (modalClose) {
         modalClose.addEventListener('click', cerrarModal);
+    }
+
+    // --- Modal: cerrar con tecla Escape ---
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const overlay = document.getElementById('modalOverlay');
+            if (overlay && overlay.classList.contains('active')) {
+                cerrarModal();
+            }
+        }
+    });
+
+    // --- Formulario de contacto (solo si existe en soporte.html) ---
+    var formContacto = document.getElementById('form-contacto');
+    if (formContacto) {
+        // Validación en tiempo real para campos de contacto
+        var camposContacto = ['contacto-nombre', 'contacto-email', 'contacto-asunto', 'contacto-mensaje'];
+        for (var j = 0; j < camposContacto.length; j++) {
+            (function(id) {
+                var campoContacto = document.getElementById(id);
+                if (campoContacto) {
+                    campoContacto.addEventListener('input', function() {
+                        validarCampoIndividual(id);
+                    });
+                }
+            })(camposContacto[j]);
+        }
+
+        formContacto.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var nombre = document.getElementById('contacto-nombre').value.trim();
+            var emailC = document.getElementById('contacto-email').value.trim();
+            var asunto = document.getElementById('contacto-asunto').value.trim();
+            var mensaje = document.getElementById('contacto-mensaje').value.trim();
+
+            var erroresContacto = 0;
+
+            if (nombre.length < 2) {
+                mostrarError('contacto-nombre', 'El nombre debe tener al menos 2 caracteres.');
+                erroresContacto++;
+            } else {
+                limpiarError('contacto-nombre');
+            }
+
+            if (emailC.indexOf('@') === -1 || emailC.indexOf('.') === -1) {
+                mostrarError('contacto-email', 'Ingrese un correo electrónico válido.');
+                erroresContacto++;
+            } else {
+                limpiarError('contacto-email');
+            }
+
+            if (asunto.length < 5) {
+                mostrarError('contacto-asunto', 'El asunto debe tener al menos 5 caracteres.');
+                erroresContacto++;
+            } else {
+                limpiarError('contacto-asunto');
+            }
+
+            if (mensaje.length < 10) {
+                mostrarError('contacto-mensaje', 'El mensaje debe tener al menos 10 caracteres.');
+                erroresContacto++;
+            } else {
+                limpiarError('contacto-mensaje');
+            }
+
+            if (erroresContacto > 0) {
+                return;
+            }
+
+            // Mostrar alerta de éxito
+            var alertaContacto = document.getElementById('alerta-contacto');
+            alertaContacto.style.display = 'flex';
+
+            formContacto.reset();
+
+            // Limpiar clases de éxito de los campos
+            for (var k = 0; k < camposContacto.length; k++) {
+                var campoReset = document.getElementById(camposContacto[k]);
+                if (campoReset) {
+                    campoReset.parentElement.classList.remove('has-success');
+                }
+            }
+
+            // Ocultar alerta después de 3 segundos
+            setTimeout(function() {
+                alertaContacto.style.display = 'none';
+            }, 3000);
+
+            console.log("Formulario de contacto enviado correctamente");
+        });
     }
 
     // Mensaje de bienvenida al cargar

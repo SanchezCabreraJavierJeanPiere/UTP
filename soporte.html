@@ -58,30 +58,50 @@
                     <h3><i class="fas fa-question-circle"></i> Preguntas Frecuentes</h3>
 
                     <article class="faq-item">
-                        <h4>¿Cómo creo un nuevo ticket?</h4>
-                        <p>Navegue a la sección "Nuevo Ticket" y complete el formulario con la información requerida. Asegúrese de seleccionar la categoría y prioridad correctas.</p>
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <h4>¿Cómo creo un nuevo ticket?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Navegue a la sección "Nuevo Ticket" y complete el formulario con la información requerida. Asegúrese de seleccionar la categoría y prioridad correctas.</p>
+                        </div>
                     </article>
 
                     <article class="faq-item">
-                        <h4>¿Cuánto tiempo tarda la atención?</h4>
-                        <p>Los tiempos varían según la prioridad:<br>
-                        <strong>Crítica:</strong> 1 hora<br>
-                        <strong>Alta:</strong> 4 horas<br>
-                        <strong>Media:</strong> 24 horas<br>
-                        <strong>Baja:</strong> 48 horas</p>
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <h4>¿Cuánto tiempo tarda la atención?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Los tiempos varían según la prioridad:<br>
+                            <strong>Crítica:</strong> 1 hora<br>
+                            <strong>Alta:</strong> 4 horas<br>
+                            <strong>Media:</strong> 24 horas<br>
+                            <strong>Baja:</strong> 48 horas</p>
+                        </div>
                     </article>
 
                     <article class="faq-item">
-                        <h4>¿Cómo defino la prioridad?</h4>
-                        <p><strong>Crítica:</strong> Sistema detenido, afecta toda la operación.<br>
-                        <strong>Alta:</strong> No puede trabajar normalmente.<br>
-                        <strong>Media:</strong> Puede trabajar con dificultad.<br>
-                        <strong>Baja:</strong> Consulta general, puede esperar.</p>
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <h4>¿Cómo defino la prioridad?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p><strong>Crítica:</strong> Sistema detenido, afecta toda la operación.<br>
+                            <strong>Alta:</strong> No puede trabajar normalmente.<br>
+                            <strong>Media:</strong> Puede trabajar con dificultad.<br>
+                            <strong>Baja:</strong> Consulta general, puede esperar.</p>
+                        </div>
                     </article>
 
                     <article class="faq-item">
-                        <h4>¿Dónde veo el estado de mis tickets?</h4>
-                        <p>En la sección "Mis Tickets" puede ver todos sus tickets. Use los filtros para buscar por estado, prioridad o categoría.</p>
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <h4>¿Dónde veo el estado de mis tickets?</h4>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>En la sección "Mis Tickets" puede ver todos sus tickets. Use los filtros para buscar por estado, prioridad o categoría.</p>
+                        </div>
                     </article>
                 </div>
 
@@ -94,6 +114,42 @@
                         <p><i class="fas fa-phone"></i> +51 999 888 777</p>
                         <p><i class="fas fa-clock"></i> Lunes a Viernes: 8:00 AM - 6:00 PM</p>
                         <p><i class="fas fa-map-marker-alt"></i> Oficina: Edificio Principal, Piso 2</p>
+                    </div>
+
+                    <!-- Formulario de Contacto -->
+                    <div class="contact-form-container">
+                        <h4><i class="fas fa-paper-plane"></i> Enviar Consulta</h4>
+
+                        <div class="alert alert-success" id="alerta-contacto" style="display: none;">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Mensaje enviado correctamente. Le responderemos pronto.</span>
+                        </div>
+
+                        <form id="form-contacto">
+                            <div class="form-group">
+                                <label for="contacto-nombre">Nombre <span class="required">*</span></label>
+                                <input type="text" id="contacto-nombre" placeholder="Su nombre completo" required minlength="2">
+                                <span class="error-message" id="error-contacto-nombre"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="contacto-email">Correo <span class="required">*</span></label>
+                                <input type="email" id="contacto-email" placeholder="ejemplo@email.com" required>
+                                <span class="error-message" id="error-contacto-email"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="contacto-asunto">Asunto <span class="required">*</span></label>
+                                <input type="text" id="contacto-asunto" placeholder="Asunto de su consulta" required minlength="5">
+                                <span class="error-message" id="error-contacto-asunto"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="contacto-mensaje">Mensaje <span class="required">*</span></label>
+                                <textarea id="contacto-mensaje" placeholder="Escriba su consulta detalladamente..." required minlength="10" rows="4"></textarea>
+                                <span class="error-message" id="error-contacto-mensaje"></span>
+                            </div>
+                            <button type="submit" class="btn btn-submit" style="width: 100%; justify-content: center;">
+                                <i class="fas fa-paper-plane"></i> Enviar Mensaje
+                            </button>
+                        </form>
                     </div>
 
                     <!-- Video Tutorial -->
